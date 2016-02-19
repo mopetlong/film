@@ -1,0 +1,94 @@
+START nacitajJson: p-file=film.json
+END nacitajJson: OK   
+Vsetky filmy:
+{"films": [
+  {
+    "Id": 1,
+    "Nazov": "Vcera",
+    "DatVyd": "2011-12-31",
+    "Dlzka": 105,
+    "Popis": "Film001-Popis",
+    "PosPoz": "2015-11-25",
+    "PosVrat": "2015-11-27",
+    "Pozicany": true
+  },
+  {
+    "Id": 2,
+    "Nazov": "Dnes",
+    "DatVyd": null,
+    "Dlzka": 0,
+    "Popis": "",
+    "PosPoz": null,
+    "PosVrat": null,
+    "Pozicany": false
+  },
+  {
+    "Id": 3,
+    "Nazov": "Zajtra",
+    "DatVyd": null,
+    "Dlzka": 0,
+    "Popis": "",
+    "PosPoz": null,
+    "PosVrat": null,
+    "Pozicany": false
+  }
+]}
+START citajFilmHodnotu: p-id=1 p-field=Popis
+END citajFilmHodnotu: Film001-Popis
+START citajFilmHodnotu: p-id=2 p-field=PosPoz
+END citajFilmHodnotu: ?
+START zapisFilmHodnotu: p-id=1 p-field=Popis p-wert=Novy popis
+END zapisFilmHodnotu: OK
+START zapisFilmHodnotu: p-id=1 p-field=PosPoz p-wert=2015-12-23
+  ERROR zapisFilmHodnotu: PosPoz nie je mozne menit hodnotu
+START zapisFilmHodnotu: p-id=1 p-field=PosVrat p-wert=2015-12-a3
+START getDate: p-char=2015-12-a3
+START getInt: p-char=2015
+END getInt: OK
+START getInt: p-char=12
+END getInt: OK
+START getInt: p-char=a3
+  ERROR getInt: p-char=a3 nie je integer
+  ERROR getDate: p-char=2015-12-a3 nie je platny datum
+  ERROR zapisFilmHodnotu: p-field PosVrat Wert:2015-12-a3 nie je platna hodnota
+START pozicajFilm: p-id=1 p-date=19.02.2016
+  ERROR pozicajFilm: 1 film je pozicany
+START pozicajFilm: p-id=2 p-date=19.02.2016
+END pozicajFilm: OK
+START vratFilm: p-id=1 p-date=19.02.2016
+END vratFilm: pocet dni pozicania=86
+START vratFilm: p-id=3 p-date=19.02.2016
+  ERROR vratFilm: 3 film nie je pozicany
+Vsetky filmy:
+{"films": [
+  {
+    "Id": 1,
+    "Nazov": "Vcera",
+    "DatVyd": "2011-12-31",
+    "Dlzka": 105,
+    "Popis": "Novy popis",
+    "PosPoz": "2015-11-25",
+    "PosVrat": "2016-02-19",
+    "Pozicany": false
+  },
+  {
+    "Id": 2,
+    "Nazov": "Dnes",
+    "DatVyd": null,
+    "Dlzka": 0,
+    "Popis": "",
+    "PosPoz": "2016-02-19",
+    "PosVrat": null,
+    "Pozicany": true
+  },
+  {
+    "Id": 3,
+    "Nazov": "Zajtra",
+    "DatVyd": null,
+    "Dlzka": 0,
+    "Popis": "",
+    "PosPoz": null,
+    "PosVrat": null,
+    "Pozicany": false
+  }
+]}

@@ -1,0 +1,5 @@
+Batch processing will be performed using:
+OpenEdge Release 11.5 as of Fri Dec  5 18:20:55 EST 2014
+
+Vrat film: 1, navratova hodnota: 86
+Pozicaj film: 2, navratova hodnota: yes
